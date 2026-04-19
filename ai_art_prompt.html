@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Art Prompt Entry</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f9f9f9; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        .container { background: #fff; padding: 2em; border-radius: 10px; box-shadow: 0 2px 8px #0001; }
+        input[type="text"] { width: 300px; padding: 0.5em; font-size: 1em; }
+        button { padding: 0.5em 1em; font-size: 1em; margin-left: 0.5em; }
+        #output { margin-top: 1em; font-size: 1.1em; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>AI Art Prompt Generator</h2>
+        <form id="promptForm" onsubmit="return false;">
+            <input type="text" id="userPrompt" placeholder="Describe your art idea..." />
+            <button onclick="generatePrompt()">Generate Prompt</button>
+        </form>
+        <div id="output"></div>
+    </div>
+    <script>
+        function generatePrompt() {
+            const userInput = document.getElementById('userPrompt').value.trim();
+            let output = document.getElementById('output');
+            if (!userInput) {
+                output.textContent = 'Please enter a description.';
+                return;
+            }
+            // Simple enhancement for AI art prompt
+            const prompt = `A high-quality digital painting of ${userInput}, highly detailed, trending on artstation, white background.`;
+            output.textContent = prompt;
+        }
+    </script>
+</body>
+</html>

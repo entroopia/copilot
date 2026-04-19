@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6-Pointed Star in Circle</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f9f9f9; }
+        canvas { background: #fff; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+<canvas id="starCanvas" width="400" height="400"></canvas>
+<script>
+function drawStarInCircle(ctx, cx, cy, radius) {
+    // Draw circle
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Draw two equilateral triangles (hexagram)
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 2;
+    // First triangle
+    ctx.beginPath();
+    for (let i = 0; i < 3; i++) {
+        let angle = Math.PI / 2 + i * (2 * Math.PI / 3);
+        let x = cx + radius * Math.cos(angle);
+        let y = cy - radius * Math.sin(angle);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+    // Second triangle (rotated by 60 degrees)
+    ctx.beginPath();
+    for (let i = 0; i < 3; i++) {
+        let angle = Math.PI / 2 + Math.PI / 6 + i * (2 * Math.PI / 3);
+        let x = cx + radius * Math.cos(angle);
+        let y = cy - radius * Math.sin(angle);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+}
+
+const canvas = document.getElementById('starCanvas');
+const ctx = canvas.getContext('2d');
+drawStarInCircle(ctx, 200, 200, 150);
+</script>
+</body>
+</html>
