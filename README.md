@@ -1,1 +1,1 @@
-My first AI generatud files
+My first AI generated files
